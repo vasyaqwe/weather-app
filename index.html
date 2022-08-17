@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="primary-header">
+    <div id="search-panel" class="search-panel bg-primary-300" data-visible="false">
+      <button aria-controls="search-panel" class="btn btn-close"><i
+          class="text-neutral-100 fa-solid fa-xmark fa-xl"><span class="sr-only">Close search panel</span></i></button>
+      <form>
+        <input type="text" name="search" id="search" placeholder="search location">
+        <span class="error-msg">Please enter a valid location</span>
+        <button class="btn btn-submit bg-accent-400 text-neutral-100">Search</button>
+      </form>
+      <ul class="search-list"></ul>
+    </div>
+    <div class="primary-header-search">
+      <button class="btn btn-search text-neutral-100 bg-neutral-400">Search for
+        places</button>
+      <button class="btn btn-location text-neutral-100 bg-neutral-400"><i class="fa-solid fa-location-crosshairs"><span
+            class="sr-only">My geolocation</span></i></button>
+    </div>
+    <img src="" class="today-img" alt="">
+    <div class="flow primary-header-info" style="--flow-space: 1.5rem;">
+      <span class="fs-900"> <span class="today-temp"></span><small class="text-neutral-200 fs-700">°C</small></span>
+      <h1 class="text-neutral-200 fs-600 fw-600 today-weather">Loading...</h1>
+      <div class="text-neutral-300 fs-500">
+        <div>
+          <span>Today • <span class="today-date"></span></span>
+        </div>
+        <i class="fa-solid fa-location-dot"></i> <span class="fw-600 user-location">Loading...</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="btns">
+        <button aria-selected="true" data-unit="metric" class="btn btn-celcius fs-500 fw-700">℃</button>
+        <button aria-selected="false" data-unit="imperial" class="btn btn-far fs-500 fw-700">℉</button>
+      </div>
+      <div class="days-cards-container">
+        <div class="days-card bg-primary-300">
+          <h2 class="card-date">Today</h2>
+          <img src="" class="img" alt="">
+          <div class="card-temp">
+            <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
+          </div>
+        </div>
+        <div class="days-card bg-primary-300">
+          <h2 class="card-date">Tomorrow</h2>
+          <img src="" class="img" alt="">
+          <div class="card-temp">
+            <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
+          </div>
+        </div>
+        <div class="days-card bg-primary-300">
+          <h2 class="card-date"></h2>
+          <img src="" class="img" alt="">
+          <div class="card-temp">
+            <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
+          </div>
+        </div>
+        <div class="days-card bg-primary-300">
+          <h2 class="card-date"></h2>
+          <img src="" class="img" alt="">
+          <div class="card-temp">
+            <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
+          </div>
+        </div>
+        <div class="days-card bg-primary-300">
+          <h2 class="card-date"></h2>
+          <img src="" class="img" alt="">
+          <div class="card-temp">
+            <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3 class="fs-550 fw-700">Today’s Hightlights</h3>
+      <div class="highlights-cards-container">
+        <div class="highlights-card bg-primary-300">
+          <h4>Wind status</h4>
+          <div class="fs-800 fw-700"><span class="wind"><span class="fs-600 fw-500">Loading...</span></span></div>
+          <div><i class="fa-solid fa-location-arrow"></i> WSW</div>
+        </div>
+        <div class="highlights-card bg-primary-300">
+          <h4>Humidity</h4>
+          <div class="fs-800 fw-700"><span class="humidity">...</span><span class="fs-600 fw-500">%</span></div>
+          <div class="humidity-bar">
+            <span class="num num-1">0</span><span class="num num-2">50</span><span class="num num-3">100</span>
+            <div class="humidity-bar-inner"></div>
+          </div>
+        </div>
+        <div class="highlights-card bg-primary-300">
+          <h4>Visibility</h4>
+          <div class="fs-800 fw-700"><span class="visibility">...</span><span class="fs-600 fw-500">km</span>
+          </div>
+        </div>
+        <div class="highlights-card bg-primary-300">
+          <h4>Air Pressure</h4>
+          <div class="fs-800 fw-700"><span class="pressure">...</span><span class="fs-600 fw-500">hPa</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="text-neutral-200">created by <a class="fw-700" href="https://github.com/vasyaqwe">vasyaqwe</a> - <a
+      href="https://devchallenges.io/">devChallenges.io</a></footer>
+</body>
+
+</html>
