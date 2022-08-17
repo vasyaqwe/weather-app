@@ -34,9 +34,9 @@ if (!localStorage.getItem('queries')) {
 let queries = JSON.parse(localStorage.getItem('queries'));
 
 
-appendSearchHistory();
-getUserWeather();
-appendDates();
+// appendSearchHistory();
+// getUserWeather();
+// appendDates();
 
 function appendSearchHistory() {
     searchList.innerHTML = '';
@@ -172,3 +172,4 @@ function appendDates() {
     };
 };
 
+imgs[0].src = './501.png'
