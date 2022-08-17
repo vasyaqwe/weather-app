@@ -95,12 +95,9 @@ function getUserWeather() {
     navigator.geolocation.getCurrentPosition(async (position) => {
         const lat = position.coords.latitude.toFixed(2);
         const lon = position.coords.longitude.toFixed(2);
-        const result = await navigator.permissions.query({ name: "geolocation" });
-        if (result.state === 'granted') {
-            const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
-            const data = await res.json();
-            appendWeatherHtml(data);
-        };
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
+        const data = await res.json();
+        appendWeatherHtml(data);
     });
 };
 
