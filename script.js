@@ -172,4 +172,4 @@ function appendDates() {
     };
 };
 
-imgs[0].src = './501.png'
+imgs[0].src = './public/501.png'
