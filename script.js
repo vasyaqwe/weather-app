@@ -131,7 +131,7 @@ function appendWeatherHtml(data) {
 
 
     const imgSrc = `${data.list[0].weather[0].id}`
-    todayImg.src = `${imgSrc.slice(0, 1) + '01'}.png`
+    todayImg.src = `public/${imgSrc.slice(0, 1) + '01'}.png`
     for (let i = 0; i < tempEls.length; i++) {
         let day = new Date();
         const dd = String(day.getDate() + i).padStart(2, '0');
@@ -150,9 +150,9 @@ function appendWeatherHtml(data) {
         tempMinEls[i].innerText = `${Math.round(avgMinTemp)}°${unit === 'metric' ? 'C' : 'F'}`;
         const imgSrc = `${arr[i].weather[0].id}`;
         if (arr[i].weather[0].id === 800) {
-            imgs[i].src = `${imgSrc}.png`;
+            imgs[i].src = `public/${imgSrc}.png`;
         } else {
-            imgs[i].src = `${imgSrc.slice(0, 1) + '01'}.png`;
+            imgs[i].src = `public/${imgSrc.slice(0, 1) + '01'}.png`;
         };
     };
 };
