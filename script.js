@@ -117,57 +117,57 @@ async function getWeather(query = 'netishyn') {
 
 function appendWeatherHtml(data) {
     const unit = document.querySelector('[aria-selected="true"]').getAttribute('data-unit');
+    const [todayData] = data.list;
 
-    todayTempEl.innerText = Math.round(data.list[0].main.temp);
-    todayWeatherEl.innerText = data.list[0].weather[0].main;
+    todayTempEl.innerText = Math.round(todayData.main.temp);
+    todayWeatherEl.innerText = todayData.weather[0].main;
     userLocation.innerText = data.city.name;
     windEl.innerHTML = `
-    ${data.list[0].wind.speed}<span class="fs-600 fw-500">${unit === 'metric' ? 'm/s' : 'mph'}</span>
+    ${todayData.wind.speed}<span class="fs-600 fw-500">${unit === 'metric' ? 'm/s' : 'mph'}</span>
     `;
-    humidityEl.innerText = data.list[0].main.humidity;
-    humidityBar.style.width = `${data.list[0].main.humidity}%`
-    visibilityEl.innerText = data.list[0].visibility / 1000;
-    pressureEl.innerText = data.list[0].main.pressure;
+    humidityEl.innerText = todayData.main.humidity;
+    humidityBar.style.width = `${todayData.main.humidity}%`
+    visibilityEl.innerText = todayData.visibility / 1000;
+    pressureEl.innerText = todayData.main.pressure;
 
 
-    const imgSrc = `${data.list[0].weather[0].id}`
-    todayImg.src = `./public/${imgSrc.slice(0, 1) + '01'}.png`
-    for (let i = 0; i < tempEls.length; i++) {
-        let day = new Date();
-        const dd = String(day.getDate() + i).padStart(2, '0');
-        const mm = String(day.getMonth() + 1).padStart(2, '0');
-        const yyyy = day.getFullYear();
-        day = yyyy + '-' + mm + '-' + dd;
-
+    const todayImgSrc = `${todayData.weather[0].id}`
+    todayImg.src = `./public/${todayImgSrc.slice(0, 1) + '01'}.png`
+    tempEls.forEach((tempEl, i) => {
+        const today = moment().add(i, 'days').format("YYYY-MM-DD");
         const tempsArr = [];
         const minTempsArr = [];
-        const arr = data.list.filter(item => item.dt_txt.slice(0, 10) === day);
-        arr.forEach(item => tempsArr.push(item.main.temp));
-        arr.forEach(item => minTempsArr.push(item.main.temp_min));
+        data.list.forEach(item => {
+            if (item.dt_txt.slice(0, 10) === today) {
+                tempsArr.push(item.main.temp)
+            }
+        });
+        data.list.forEach(item => {
+            if (item.dt_txt.slice(0, 10) === today) {
+                minTempsArr.push(item.main.temp_min);
+            }
+        });
         const avgTemp = tempsArr.reduce((acc, curr) => acc + curr) / tempsArr.length;
         const avgMinTemp = minTempsArr.reduce((acc, curr) => acc + curr) / minTempsArr.length;
-        tempEls[i].innerText = `${Math.round(avgTemp)}°${unit === 'metric' ? 'C' : 'F'}`;
+
+        tempEl.innerText = `${Math.round(avgTemp)}°${unit === 'metric' ? 'C' : 'F'}`;
         tempMinEls[i].innerText = `${Math.round(avgMinTemp)}°${unit === 'metric' ? 'C' : 'F'}`;
-        const imgSrc = `${arr[i].weather[0].id}`;
-        if (arr[i].weather[0].id === 800) {
+        const imgSrc = `${data.list[i].weather[0].id}`;
+        if (data.list[i].weather[0].id === 800) {
             imgs[i].src = `./public/${imgSrc}.png`;
         } else {
             imgs[i].src = `./public/${imgSrc.slice(0, 1) + '01'}.png`;
         };
-    };
+    })
 };
 
 
 function appendDates() {
-    const options = { weekday: 'short', month: 'short', day: 'numeric' };
-    const newDate = new Date();
-    const today = newDate.toLocaleDateString("en-US", options);
-    todayDateEl.innerText = today;
+    const date = moment().format('ddd, MMM Do');
+    todayDateEl.innerText = date;
+
     for (let i = 2; i < cardDates.length; i++) {
-        const options = { weekday: 'short', month: 'short', day: 'numeric' };
-        const newDate = new Date();
-        newDate.setDate(newDate.getDate() + i);
-        const date = newDate.toLocaleDateString("en-US", options);
+        const date = moment().add(i, 'days').format("ddd, MMM Do");
         cardDates[i].innerText = date;
     };
 };
