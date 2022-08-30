@@ -26,13 +26,7 @@ const btnFar = document.querySelector('.btn-far');
 
 const apiKey = '5fcff164e26c96783eb297228f44e426';
 
-// add queries array to localStorage if there isn't already
-if (!localStorage.getItem('queries')) {
-    const queries = [];
-    localStorage.setItem("queries", JSON.stringify(queries));
-};
-let queries = JSON.parse(localStorage.getItem('queries'));
-
+let queries = JSON.parse(localStorage.getItem('queries')) || [];
 
 appendSearchHistory();
 getUserWeather();
