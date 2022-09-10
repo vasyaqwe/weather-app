@@ -70,11 +70,6 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (query) {
         getWeather(query);
-        if (!queries.includes(query)) {
-            queries.push(query);
-            localStorage.setItem("queries", JSON.stringify(queries));
-            appendSearchHistory();
-        };
     };
 });
 
@@ -102,6 +97,11 @@ async function getWeather(query = 'netishyn') {
         const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=${unit}&appid=${apiKey}`)
         const data = await res.json();
         appendWeatherHtml(data);
+        if (!queries.includes(query)) {
+            queries.push(query);
+            localStorage.setItem("queries", JSON.stringify(queries));
+            appendSearchHistory();
+        }
         errorMsg.setAttribute('data-visible', false);
     } catch (e) {
         errorMsg.setAttribute('data-visible', true);

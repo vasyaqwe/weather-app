@@ -24,7 +24,7 @@
       <button aria-controls="search-panel" class="btn btn-close"><i
           class="text-neutral-100 fa-solid fa-xmark fa-xl"><span class="sr-only">Close search panel</span></i></button>
       <form>
-        <input type="text" name="search" id="search" placeholder="search location">
+        <input class="text-neutral-100" type="text" name="search" id="search" placeholder="search location">
         <span class="error-msg">Please enter a valid location</span>
         <button class="btn btn-submit bg-accent-400 text-neutral-100">Search</button>
       </form>
@@ -51,8 +51,10 @@
   <main>
     <section>
       <div class="btns">
-        <button aria-selected="true" data-unit="metric" class="btn btn-celcius fs-500 fw-700">℃</button>
-        <button aria-selected="false" data-unit="imperial" class="btn btn-far fs-500 fw-700">℉</button>
+        <button aria-selected="true" data-unit="metric"
+          class="btn btn-celcius bg-primary-200 text-neutral-100 fs-500 fw-700">℃</button>
+        <button aria-selected="false" data-unit="imperial"
+          class="btn btn-far bg-primary-200 text-neutral-100 fs-500 fw-700">℉</button>
       </div>
       <div class="days-cards-container">
         <div class="days-card bg-primary-300">
@@ -70,21 +72,21 @@
           </div>
         </div>
         <div class="days-card bg-primary-300">
-          <h2 class="card-date"></h2>
+          <h2 class="card-date">Loading...</h2>
           <img src="" class="img" alt="">
           <div class="card-temp">
             <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
           </div>
         </div>
         <div class="days-card bg-primary-300">
-          <h2 class="card-date"></h2>
+          <h2 class="card-date">Loading...</h2>
           <img src="" class="img" alt="">
           <div class="card-temp">
             <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
           </div>
         </div>
         <div class="days-card bg-primary-300">
-          <h2 class="card-date"></h2>
+          <h2 class="card-date">Loading...</h2>
           <img src="" class="img" alt="">
           <div class="card-temp">
             <strong class="temp">Loading...</strong> <span class="text-neutral-200 temp-min"></span>
