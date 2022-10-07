@@ -114,6 +114,7 @@ function appendWeatherHtml(data) {
     const [todayData] = data.list;
 
     todayTempEl.innerText = Math.round(todayData.main.temp);
+    todayTempEl.nextElementSibling.innerText = `°${unit === 'metric' ? 'C' : 'F'}`
     todayWeatherEl.innerText = todayData.weather[0].main;
     userLocation.innerText = data.city.name;
     windEl.innerHTML = `
