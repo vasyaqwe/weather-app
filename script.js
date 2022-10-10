@@ -70,6 +70,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (query) {
         getWeather(query);
+        searchPanel.setAttribute('data-visible', false);
     };
 });
 
